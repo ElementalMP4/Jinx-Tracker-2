@@ -46,7 +46,7 @@ func main() {
 	r.HandleFunc("/decrement/{player}", decrementPlayerHandler).Methods(http.MethodPost)
 
 	r.HandleFunc("/", indexPageHandler)
-	r.Handle("/static/", http.FileServer(http.FS(staticFS)))
+	r.PathPrefix("/").Handler(http.FileServer(http.FS(staticFS)))
 
 	fmt.Println("Starting server on", addr)
 	err = http.ListenAndServe(addr, r)

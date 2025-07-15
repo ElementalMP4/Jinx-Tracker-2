@@ -107,5 +107,5 @@ func indexPageHandler(w http.ResponseWriter, r *http.Request) {
 		players = append(players, *player)
 	}
 
-	renderTemplate(w, "index", players)
+	renderTemplate(w, "game", players)
 }
