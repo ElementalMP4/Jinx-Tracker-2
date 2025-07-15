@@ -41,11 +41,18 @@ func main() {
 	fmt.Printf("Players: %s\n", config.Players)
 
 	r := mux.NewRouter()
-	r.HandleFunc("/players", getPlayersHandler).Methods(http.MethodGet)
-	r.HandleFunc("/increment/{player}", incrementPlayerHandler).Methods(http.MethodPost)
-	r.HandleFunc("/decrement/{player}", decrementPlayerHandler).Methods(http.MethodPost)
 
+	// API Routes
+	r.HandleFunc("/api/players", getPlayersHandler).Methods(http.MethodGet)
+	r.HandleFunc("/api/increment/{player}", incrementPlayerHandler).Methods(http.MethodPost)
+	r.HandleFunc("/api/decrement/{player}", decrementPlayerHandler).Methods(http.MethodPost)
+
+	// UI Routes
 	r.HandleFunc("/", indexPageHandler)
+	r.HandleFunc("/increment/{player}", incrementPlayerRoute).Methods(http.MethodPost)
+	r.HandleFunc("/decrement/{player}", decrementPlayerRoute).Methods(http.MethodPost)
+
+	// Static server
 	r.PathPrefix("/").Handler(http.FileServer(http.FS(staticFS)))
 
 	fmt.Println("Starting server on", addr)
