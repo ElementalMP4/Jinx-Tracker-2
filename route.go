@@ -8,10 +8,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, World!")
-}
-
 func getPlayersHandler(w http.ResponseWriter, r *http.Request) {
 	players := []Player{}
 	for _, name := range config.Players {
@@ -91,4 +87,25 @@ func decrementPlayerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(updatedPlayer)
+}
+
+func indexPageHandler(w http.ResponseWriter, r *http.Request) {
+	players := []Player{}
+	for _, name := range config.Players {
+		player, err := Get(name)
+
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			errorContainer := Error{
+				Message: err.Error(),
+				Code:    ERR_INTERNAL_SERVER_ERROR,
+			}
+			json.NewEncoder(w).Encode(errorContainer)
+			return
+		}
+
+		players = append(players, *player)
+	}
+
+	renderTemplate(w, "index", players)
 }

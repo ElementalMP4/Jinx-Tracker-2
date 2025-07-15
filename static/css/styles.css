@@ -1,0 +1,58 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+header {
+    background: #333;
+    padding: 1em;
+    color: white;
+}
+
+nav a {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+div.main {
+    padding: 1em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+th,
+td {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.increment {
+    background-color: #04AA6D;
+}
+
+button.decrement {
+    background-color: #eb3a3a;
+}

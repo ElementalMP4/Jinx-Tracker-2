@@ -41,10 +41,12 @@ func main() {
 	fmt.Printf("Players: %s\n", config.Players)
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", handler).Methods(http.MethodGet)
 	r.HandleFunc("/players", getPlayersHandler).Methods(http.MethodGet)
 	r.HandleFunc("/increment/{player}", incrementPlayerHandler).Methods(http.MethodPost)
 	r.HandleFunc("/decrement/{player}", decrementPlayerHandler).Methods(http.MethodPost)
+
+	r.HandleFunc("/", indexPageHandler)
+	r.Handle("/static/", http.FileServer(http.FS(staticFS)))
 
 	fmt.Println("Starting server on", addr)
 	err = http.ListenAndServe(addr, r)

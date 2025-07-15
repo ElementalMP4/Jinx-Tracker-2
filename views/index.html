@@ -1,0 +1,15 @@
+{{template "layout.html" .}}
+
+{{define "content"}}
+<h1>Players</h1>
+
+{{ range . }}
+
+<div>
+    <h1>{{ .Name }}</h1>
+    <p>{{ .Score }}</p>
+    <button class="increment">+1</button>
+    <button class="decrement">-1</button>
+</div>
+{{ end }}
+{{ end }}
