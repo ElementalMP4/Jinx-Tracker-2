@@ -32,6 +32,33 @@ func getPlayersHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
+func getPlayerHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	playerName := vars["player"]
+
+	if !contains(config.Players, playerName) {
+		w.WriteHeader(http.StatusNotFound)
+		errorContainer := Error{
+			Message: fmt.Sprintf("Player %s not found", playerName),
+			Code:    ERR_PLAYER_NOT_FOUND,
+		}
+		json.NewEncoder(w).Encode(errorContainer)
+	}
+
+	player, err := Get(playerName)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		errorContainer := Error{
+			Message: err.Error(),
+			Code:    ERR_INTERNAL_SERVER_ERROR,
+		}
+		json.NewEncoder(w).Encode(errorContainer)
+		return
+	}
+
+	json.NewEncoder(w).Encode(player)
+}
+
 func incrementPlayerHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	player := vars["player"]
