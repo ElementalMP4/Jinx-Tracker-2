@@ -43,7 +43,7 @@ func sendToPrinter(receipt Receipt) error {
 	}
 
 	var url = config.Printer
-
+	fmt.Println(string(j))
 	if url == "" {
 		return fmt.Errorf("print server URL not set")
 	}
