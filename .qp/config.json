@@ -4,7 +4,7 @@
     "go.mod",
     "*.go",
     "views/*",
-    "static/*"
+    "static/*/*"
   ],
   "install_files": [
     {
