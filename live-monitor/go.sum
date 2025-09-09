@@ -1,0 +1,6 @@
+github.com/ElementalMP4/go-hd44780 v0.0.0-20250908230144-d8ff0b35f214 h1:PE+ZbZHqRRBJy2T1dFhsPuFc0N2VC+xGloHXLeNlJj8=
+github.com/ElementalMP4/go-hd44780 v0.0.0-20250908230144-d8ff0b35f214/go.mod h1:ImKP/XE276YCdh6M5FS6wckifMCggx3ajdcGWEJu1Y8=
+github.com/ElementalMP4/go-hd44780 v0.0.0-20250909102847-49218c5b3aa1 h1:6bZiGAApdUM9GMZrsttqcjLY2KMb4ahquaZls41X/JY=
+github.com/ElementalMP4/go-hd44780 v0.0.0-20250909102847-49218c5b3aa1/go.mod h1:ImKP/XE276YCdh6M5FS6wckifMCggx3ajdcGWEJu1Y8=
+github.com/ElementalMP4/go-i2c v0.0.0-20250908230024-56a46527fae3 h1:XQQNIMuCbslXk+ib6qyZNls2sPR7J3keU7I8f8nfRio=
+github.com/ElementalMP4/go-i2c v0.0.0-20250908230024-56a46527fae3/go.mod h1:HHDnZhFXXgj3btGoeFd0HpxrbvCkdFmrSEtpuFMseGk=
