@@ -85,3 +85,21 @@ button.decrement {
         padding: 16px 28px;
     }
 }
+
+.print-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    bottom: 0;
+    background: #f7f7f7;
+}
+
+.print-btn {
+    background: #0087c6;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}

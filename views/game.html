@@ -1,21 +1,17 @@
 {{template "layout.html" .}}
 
 {{define "content"}}
-<div class="header">
-    <form method="POST" action="/api/print" style="display:inline;">
-        <button type="submit" class="print-btn">Print</button>
-    </form>
-</div>
+
 <div class="players-container">
     {{ range . }}
     <div class="player-bubble">
         <h1>{{ .Name }}</h1>
         <p class="score">{{ .Score }}</p>
         <div class="button-row">
-            <form method="POST" action="/increment/{{ .Name }}">
+            <form method="POST" action="/increment/{{ .Name }}" class="ajax-form">
                 <button class="increment" type="submit">+1</button>
             </form>
-            <form method="POST" action="/decrement/{{ .Name }}">
+            <form method="POST" action="/decrement/{{ .Name }}" class="ajax-form">
                 <button class="decrement" type="submit">-1</button>
             </form>
         </div>
@@ -23,17 +19,35 @@
     {{ end }}
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const bubbles = document.querySelectorAll('.player-bubble');
-        const total = bubbles.length;
+<div class="print-container">
+    <button type="button" class="print-btn" id="printBtn">Print</button>
+</div>
 
-        bubbles.forEach((bubble, i) => {
-            const red = Math.round((i / Math.max(1, total - 1)) * 255);
-            const green = Math.round(255 - red);
-            bubble.style.backgroundColor = `rgb(${red}, ${green}, 80)`; // adjust blue for warmth
-        });
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const bubbles = document.querySelectorAll('.player-bubble');
+    const total = bubbles.length;
+    bubbles.forEach((bubble, i) => {
+        const red = Math.round((i / Math.max(1, total - 1)) * 255);
+        const green = Math.round(255 - red);
+        bubble.style.backgroundColor = `rgb(${red}, ${green}, 80)`;
     });
+
+    const printBtn = document.getElementById('printBtn');
+    printBtn.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/api/print', { method: 'POST' });
+            if (response.ok) {
+                console.log('Print request sent successfully');
+            } else {
+                console.error('Print request failed');
+            }
+        } catch (err) {
+            console.error('Error:', err);
+        }
+    });
+});
 </script>
+
 
 {{ end }}
