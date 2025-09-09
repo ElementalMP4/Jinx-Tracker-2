@@ -1,0 +1,18 @@
+{
+  "app_name": "jinx-tracker",
+  "build_files": [
+    "go.mod",
+    "*.go",
+    "views/*",
+    "static/*"
+  ],
+  "install_files": [
+    {
+      "file": "jinx-tracker",
+      "from": "build"
+    }
+  ],
+  "build_script": "scripts/build.sh",
+  "systemd": true,
+  "exec": "/opt/qp_apps/jinx-tracker/jinx-tracker"
+}
