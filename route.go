@@ -200,3 +200,46 @@ func decrementPlayerRoute(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func printHandler(w http.ResponseWriter, r *http.Request) {
+	players := []Player{}
+	for _, name := range config.Players {
+		player, err := Get(name)
+
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			errorContainer := Error{
+				Message: err.Error(),
+				Code:    ERR_INTERNAL_SERVER_ERROR,
+			}
+			json.NewEncoder(w).Encode(errorContainer)
+			return
+		}
+
+		players = append(players, *player)
+	}
+
+	receipt := []ReceiptComponent{}
+	receipt = append(receipt, createTitleComponent())
+
+	for idx, player := range players {
+		receipt = append(receipt, createPlayerComponent(idx, player))
+	}
+
+	container := Receipt{
+		Components: receipt,
+	}
+
+	err = sendToPrinter(container)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		errorContainer := Error{
+			Message: err.Error(),
+			Code:    ERR_INTERNAL_SERVER_ERROR,
+		}
+		json.NewEncoder(w).Encode(errorContainer)
+		return
+	}
+
+	json.NewEncoder(w).Encode(container)
+}

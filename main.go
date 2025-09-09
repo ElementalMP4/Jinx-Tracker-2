@@ -47,6 +47,7 @@ func main() {
 	r.HandleFunc("/api/players/{player}", getPlayerHandler).Methods(http.MethodGet)
 	r.HandleFunc("/api/increment/{player}", incrementPlayerHandler).Methods(http.MethodPost)
 	r.HandleFunc("/api/decrement/{player}", decrementPlayerHandler).Methods(http.MethodPost)
+	r.HandleFunc("/api/print", printHandler).Methods(http.MethodPost)
 
 	// UI Routes
 	r.HandleFunc("/", indexPageHandler)

@@ -9,6 +9,7 @@ type Config struct {
 	Port    int      `json:"port"`
 	Bind    string   `json:"bind,omitempty"`
 	Players []string `json:"players"`
+	Printer string   `json:"printer"`
 }
 
 type Player struct {
@@ -23,4 +24,17 @@ type Players struct {
 type Error struct {
 	Message string `json:"message"`
 	Code    string `json:"code"`
+}
+
+type ReceiptComponent struct {
+	Type      string `json:"type"`
+	Content   string `json:"content,omitempty"`
+	Bold      bool   `json:"bold,omitempty"`
+	FontSize  string `json:"font_size,omitempty"`
+	Align     string `json:"align,omitempty"`
+	LineWidth int    `json:"line_width,omitempty"`
+}
+
+type Receipt struct {
+	Components []ReceiptComponent `json:"layout"`
 }
