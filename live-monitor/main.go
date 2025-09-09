@@ -96,6 +96,13 @@ func main() {
 				fmt.Fprint(lcd, players.Players[1].toString())
 
 				playerCache = players
+
+				for i := 0; i < 5; i++ {
+					lcd.BacklightOff()
+					time.Sleep(100)
+					lcd.BacklightOn()
+					time.Sleep(100)
+				}
 			}
 		} else {
 			fmt.Printf("Failed to get players: %v", err)
