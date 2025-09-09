@@ -43,6 +43,7 @@ func getPlayerHandler(w http.ResponseWriter, r *http.Request) {
 			Code:    ERR_PLAYER_NOT_FOUND,
 		}
 		json.NewEncoder(w).Encode(errorContainer)
+		return
 	}
 
 	player, err := Get(playerName)
