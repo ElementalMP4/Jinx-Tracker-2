@@ -219,6 +219,10 @@ func printHandler(w http.ResponseWriter, r *http.Request) {
 		players = append(players, *player)
 	}
 
+	sort.Slice(players, func(i, j int) bool {
+		return players[i].Score > players[j].Score
+	})
+
 	receipt := []ReceiptComponent{}
 	receipt = append(receipt, createTitleComponent())
 
@@ -230,7 +234,7 @@ func printHandler(w http.ResponseWriter, r *http.Request) {
 		Components: receipt,
 	}
 
-	err = sendToPrinter(container)
+	err := sendToPrinter(container)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		errorContainer := Error{
