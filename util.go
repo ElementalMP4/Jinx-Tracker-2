@@ -37,13 +37,12 @@ func createTitleComponent() ReceiptComponent {
 }
 
 func sendToPrinter(receipt Receipt) error {
-	j, err := json.Marshal(receipt)
+	j, err := json.Marshal(receipt.Components)
 	if err != nil {
 		return err
 	}
 
 	var url = config.Printer
-	fmt.Println(string(j))
 	if url == "" {
 		return fmt.Errorf("print server URL not set")
 	}
