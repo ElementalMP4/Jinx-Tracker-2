@@ -1,6 +1,11 @@
 {{template "layout.html" .}}
 
 {{define "content"}}
+<div class="header">
+    <form method="POST" action="/api/print" style="display:inline;">
+        <button type="submit" class="print-btn">Print</button>
+    </form>
+</div>
 <div class="players-container">
     {{ range . }}
     <div class="player-bubble">
